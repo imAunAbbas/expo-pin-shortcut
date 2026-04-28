@@ -1,0 +1,47 @@
+{
+  "name": "@aun-abbas/expo-pin-shortcut",
+  "version": "0.1.0",
+  "description": "Pin a shortcut to the Android home screen from your Expo or React Native app. Wraps ShortcutManagerCompat.requestPinShortcut. Android-only by design (iOS does not expose a programmatic equivalent).",
+  "main": "index.ts",
+  "types": "index.ts",
+  "files": [
+    "index.ts",
+    "android/build.gradle",
+    "android/src/**/*",
+    "ios/*.swift",
+    "ios/*.podspec",
+    "expo-module.config.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "expo",
+    "react-native",
+    "android",
+    "shortcut",
+    "pin-shortcut",
+    "home-screen",
+    "home-screen-shortcut",
+    "launcher",
+    "expo-module"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imAunAbbas/expo-pin-shortcut.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imAunAbbas/expo-pin-shortcut/issues"
+  },
+  "homepage": "https://github.com/imAunAbbas/expo-pin-shortcut#readme",
+  "author": "Aun Abbas <imaunabbas@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "expo-modules-core": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
