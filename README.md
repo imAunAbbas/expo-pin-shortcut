@@ -99,6 +99,16 @@ interface PinShortcutInput {
 - `E_INVALID_URI` — `uri` could not be parsed.
 - `E_PIN_FAILED` — anything else went wrong (icon download crash, system error). The exception message includes the underlying class + message.
 
+## Surviving launcher-icon swaps
+
+Apps that swap their launcher icon at runtime (e.g. via `expo-alternate-app-icons`) typically do so by enabling an `<activity-alias>` and disabling the original `MainActivity`. By default, Android removes pinned shortcuts whose owning activity has been disabled, so every shortcut your users pinned would vanish on the next icon switch.
+
+Since `0.2.0`, this module bundles a tiny always-enabled `ShortcutHostActivity` and anchors every pinned shortcut to it via `ShortcutInfo.setActivity(...)`. The host is never launched (its `onCreate` calls `finish()` immediately) — it exists only as stable metadata. Pinned shortcuts now survive arbitrary icon swaps.
+
+> Existing shortcuts pinned with `0.1.0` were anchored to `MainActivity` and cannot be retroactively re-anchored — Android pins are immutable in that respect. Users who already had pinned shortcuts will need to re-pin them once after upgrading.
+
+For the click intent itself to survive the swap, your launcher activity's deep-link `<intent-filter>` must also be present on each `<activity-alias>` (otherwise `ACTION_VIEW` can't resolve while an alternate icon is active). The host activity solves the *ownership* half of the problem; the intent-filter mirroring is your app's responsibility.
+
 ## Icon handling
 
 If you pass `iconUrl`, the native side downloads the bitmap on a background thread, then renders it onto a 432×432 white square with ~20% padding to survive launcher icon masking (adaptive icon shape). If the download fails or `iconUrl` is null, the launcher icon (`R.mipmap.ic_launcher`) is used instead.

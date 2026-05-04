@@ -1,6 +1,6 @@
 {
   "name": "@aun-abbas/expo-pin-shortcut",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pin a shortcut to the Android home screen from your Expo or React Native app. Wraps ShortcutManagerCompat.requestPinShortcut. Android-only by design (iOS does not expose a programmatic equivalent).",
   "main": "index.ts",
   "types": "index.ts",

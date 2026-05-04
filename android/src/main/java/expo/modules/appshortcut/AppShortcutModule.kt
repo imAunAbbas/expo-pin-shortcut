@@ -1,6 +1,7 @@
 package expo.modules.appshortcut
 
 import android.app.PendingIntent
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -80,6 +81,7 @@ class AppShortcutModule : Module() {
           .setLongLabel(options.label)
           .setIcon(icon)
           .setIntent(intent)
+          .setActivity(ComponentName(ctx, ShortcutHostActivity::class.java))
           .build()
 
       val callback = ShortcutManagerCompat.createShortcutResultIntent(ctx, shortcut)
